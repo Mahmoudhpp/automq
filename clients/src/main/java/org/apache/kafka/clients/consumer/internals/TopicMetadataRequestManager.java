@@ -269,10 +269,14 @@ public class TopicMetadataRequestManager implements RequestManager {
                         // in the returned map
                         continue;
                     else if (error.exception() instanceof RetriableException)
-                        throw error.exception();
+                        {
+                            throw error.exception();
+                        }
                     else
-                        throw new KafkaException("Unexpected error fetching metadata for topic " + topic,
+                        {
+                            throw new KafkaException("Unexpected error fetching metadata for topic " + topic,
                             error.exception());
+                        }
                 }
             }
 

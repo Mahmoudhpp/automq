@@ -130,10 +130,14 @@ public class TopicMetadataFetcher {
                             // in the returned map
                             continue;
                         else if (error.exception() instanceof RetriableException)
-                            shouldRetry = true;
+                            {
+                                shouldRetry = true;
+                            }
                         else
-                            throw new KafkaException("Unexpected error fetching metadata for topic " + topic,
+                            {
+                                throw new KafkaException("Unexpected error fetching metadata for topic " + topic,
                                     error.exception());
+                            }
                     }
                 }
 
