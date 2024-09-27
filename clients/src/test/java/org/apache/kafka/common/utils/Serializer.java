@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.utils;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -35,6 +36,7 @@ public class Serializer {
 
     public static Object deserialize(InputStream inputStream) throws IOException, ClassNotFoundException {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+            ObjectInputFilters.enableObjectFilterIfUnprotected(objectInputStream);
             return objectInputStream.readObject();
         }
     }
