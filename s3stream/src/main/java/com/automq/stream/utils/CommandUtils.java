@@ -11,6 +11,7 @@
 
 package com.automq.stream.utils;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 public class CommandUtils {
     public static CommandResult run(String... cmd) {
         try {
-            Process p = Runtime.getRuntime().exec(cmd);
+            Process p = SystemCommand.runCommand(Runtime.getRuntime(), cmd);
             try (BufferedReader inputReader = new BufferedReader(new InputStreamReader(p.getInputStream(), Charset.defaultCharset()));
                  BufferedReader errorReader = new BufferedReader(new InputStreamReader(p.getErrorStream(), Charset.defaultCharset()))) {
                 String stdout = inputReader.lines().collect(Collectors.joining("\n"));
