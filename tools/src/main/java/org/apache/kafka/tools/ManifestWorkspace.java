@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.tools;
 
+import io.github.pixee.security.ZipSecurity;
 import org.apache.kafka.common.utils.AppInfoParser;
 import org.apache.kafka.connect.runtime.isolation.PluginSource;
 import org.apache.kafka.connect.runtime.isolation.PluginType;
@@ -420,7 +421,7 @@ public class ManifestWorkspace {
 
     private boolean jarIsEmpty(Path path) throws IOException {
         Objects.requireNonNull(path, "path must be non-null");
-        try (ZipInputStream stream = new ZipInputStream(Files.newInputStream(
+        try (ZipInputStream stream = ZipSecurity.createHardenedInputStream(Files.newInputStream(
                 path,
                 StandardOpenOption.READ
         ))) {
