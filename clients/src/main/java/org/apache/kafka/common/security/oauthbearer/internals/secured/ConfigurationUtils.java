@@ -17,6 +17,8 @@
 
 package org.apache.kafka.common.security.oauthbearer.internals.secured;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -164,7 +166,7 @@ public class ConfigurationUtils {
         URL url;
 
         try {
-            url = new URL(value);
+            url = Urls.create(value, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             throw new ConfigException(name, value, String.format("The OAuth configuration option %s contains a URL (%s) that is malformed: %s", name, value, e.getMessage()));
         }

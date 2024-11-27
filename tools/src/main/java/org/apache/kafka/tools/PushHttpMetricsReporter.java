@@ -18,6 +18,8 @@ package org.apache.kafka.tools;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.MetricName;
@@ -108,7 +110,7 @@ public class PushHttpMetricsReporter implements MetricsReporter {
     public void configure(Map<String, ?> configs) {
         PushHttpMetricsReporterConfig config = new PushHttpMetricsReporterConfig(CONFIG_DEF, configs);
         try {
-            url = new URL(config.getString(METRICS_URL_CONFIG));
+            url = Urls.create(config.getString(METRICS_URL_CONFIG), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             throw new ConfigException("Malformed metrics.url", e);
         }

@@ -19,6 +19,8 @@ package org.apache.kafka.common.security.oauthbearer.internals.secured;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -161,7 +163,7 @@ public class HttpAccessTokenRetriever implements AccessTokenRetriever {
                 HttpURLConnection con = null;
 
                 try {
-                    con = (HttpURLConnection) new URL(tokenEndpointUrl).openConnection();
+                    con = (HttpURLConnection) Urls.create(tokenEndpointUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
 
                     if (sslSocketFactory != null && con instanceof HttpsURLConnection)
                         ((HttpsURLConnection) con).setSSLSocketFactory(sslSocketFactory);

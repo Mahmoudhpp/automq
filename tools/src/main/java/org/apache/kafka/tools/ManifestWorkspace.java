@@ -16,6 +16,8 @@
  */
 package org.apache.kafka.tools;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.kafka.common.utils.AppInfoParser;
 import org.apache.kafka.connect.runtime.isolation.PluginSource;
 import org.apache.kafka.connect.runtime.isolation.PluginType;
@@ -160,7 +162,7 @@ public class ManifestWorkspace {
             for (PluginType type : PluginType.values()) {
                 Set<String> result;
                 try {
-                    URL u = new URL(baseUrl, MANIFEST_PREFIX + type.superClass().getName());
+                    URL u = Urls.create(baseUrl, MANIFEST_PREFIX + type.superClass().getName(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                     result = parse(u);
                 } catch (RuntimeException e) {
                     result = new LinkedHashSet<>();
