@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.tools.consumer.group;
 
+import java.nio.file.Files;
 import joptsimple.OptionException;
 import kafka.test.ClusterConfig;
 import kafka.test.ClusterInstance;
@@ -771,7 +772,7 @@ public class ResetConsumerGroupOffsetTest {
     }
 
     private void writeContentToFile(File file, String content) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter bw = Files.newBufferedWriter(file.toPath())) {
             bw.write(content);
         }
     }
