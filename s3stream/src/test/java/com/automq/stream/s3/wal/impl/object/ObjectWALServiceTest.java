@@ -11,6 +11,7 @@ import com.automq.stream.utils.Time;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,7 +40,7 @@ public class ObjectWALServiceTest {
             .build();
         wal = new ObjectWALService(Time.SYSTEM, objectStorage, config);
         wal.start();
-        random = new Random();
+        random = new SecureRandom();
     }
 
     @AfterEach

@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.metrics;
 
+import java.security.SecureRandom;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -513,7 +514,7 @@ public class MetricsTest {
 
     @Test
     public void testPercentilesWithRandomNumbersAndLinearBucketing() {
-        long seed = new Random().nextLong();
+        long seed = new SecureRandom().nextLong();
         int sizeInBytes = 100 * 1000;   // 100kB
         long maximumValue = 1000 * 24 * 60 * 60 * 1000L; // if values are ms, max is 1000 days
 
@@ -727,7 +728,7 @@ public class MetricsTest {
      */
     @Test
     public void testConcurrentReadUpdate() {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         final Deque<Sensor> sensors = new ConcurrentLinkedDeque<>();
         metrics = new Metrics(new MockTime(10));
         SensorCreator sensorCreator = new SensorCreator(metrics);
@@ -797,7 +798,7 @@ public class MetricsTest {
         final Deque<Sensor> sensors = new ConcurrentLinkedDeque<>();
         SensorCreator sensorCreator = new SensorCreator(metrics);
 
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         final AtomicBoolean alive = new AtomicBoolean(true);
         executorService = Executors.newFixedThreadPool(3);
 

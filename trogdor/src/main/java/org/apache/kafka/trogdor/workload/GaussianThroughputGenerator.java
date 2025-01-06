@@ -19,6 +19,7 @@ package org.apache.kafka.trogdor.workload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.security.SecureRandom;
 import org.apache.kafka.common.utils.Time;
 import java.util.Random;
 
@@ -57,7 +58,7 @@ public class GaussianThroughputGenerator implements ThroughputGenerator {
     private final int windowsUntilRateChange;
     private final long windowSizeMs;
 
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
 
     private long nextWindowStarts = 0;
     private int messageTracker = 0;

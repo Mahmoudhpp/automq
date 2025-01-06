@@ -17,6 +17,7 @@
 
 package org.apache.kafka.server.immutable.pcollections;
 
+import java.security.SecureRandom;
 import org.apache.kafka.server.immutable.DelegationChecker;
 import org.apache.kafka.server.immutable.ImmutableNavigableSet;
 import org.junit.jupiter.api.Assertions;
@@ -45,7 +46,7 @@ import static org.mockito.Mockito.mock;
 @SuppressWarnings({"unchecked", "deprecation"})
 public class PCollectionsImmutableNavigableSetTest {
 
-    private static final TreePSet<Integer> SINGLETON_SET = TreePSet.singleton(new Random().nextInt());
+    private static final TreePSet<Integer> SINGLETON_SET = TreePSet.singleton(new SecureRandom().nextInt());
 
     private static final class PCollectionsTreeSetWrapperDelegationChecker<R> extends DelegationChecker<TreePSet<Object>, PCollectionsImmutableNavigableSet<Object>, R> {
         public PCollectionsTreeSetWrapperDelegationChecker() {

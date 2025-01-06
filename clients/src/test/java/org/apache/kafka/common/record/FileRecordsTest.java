@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.record;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.compress.Compression;
@@ -494,7 +495,7 @@ public class FileRecordsTest {
     @Test
     public void testDownconversionAfterMessageFormatDowngrade() throws IOException {
         // random bytes
-        Random random = new Random();
+        Random random = new SecureRandom();
         byte[] bytes = new byte[3000];
         random.nextBytes(bytes);
 

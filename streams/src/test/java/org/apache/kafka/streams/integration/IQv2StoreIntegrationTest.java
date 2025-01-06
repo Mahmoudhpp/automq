@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.integration;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -127,7 +128,7 @@ public class IQv2StoreIntegrationTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(IQv2StoreIntegrationTest.class);
 
-    private static final long SEED = new Random().nextLong();
+    private static final long SEED = new SecureRandom().nextLong();
     private static final Random RANDOM = new Random(SEED);
 
     private static final int NUM_BROKERS = 1;

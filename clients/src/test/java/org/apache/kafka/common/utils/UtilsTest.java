@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.utils;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.config.ConfigException;
 import org.apache.kafka.test.TestUtils;
 import org.junit.jupiter.api.Test;
@@ -390,7 +391,7 @@ public class UtilsTest {
     public void testFileAsStringNamedPipe() throws Exception {
 
         // Create a temporary name for named pipe
-        Random random = new Random();
+        Random random = new SecureRandom();
         long n = random.nextLong();
         n = n == Long.MIN_VALUE ? 0 : Math.abs(n);
 
@@ -588,7 +589,7 @@ public class UtilsTest {
     private String fileChannelMockExpectReadWithRandomBytes(final FileChannel channelMock,
                                                             final int bufferSize) throws IOException {
         final int step = 20;
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         int remainingBytes = bufferSize;
         OngoingStubbing<Integer> when = when(channelMock.read(any(), anyLong()));
         StringBuilder expectedBufferContent = new StringBuilder();

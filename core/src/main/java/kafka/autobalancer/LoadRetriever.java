@@ -12,6 +12,7 @@
 package kafka.autobalancer;
 
 import com.automq.stream.utils.LogContext;
+import java.security.SecureRandom;
 import java.util.Optional;
 import kafka.autobalancer.common.AutoBalancerThreadFactory;
 import kafka.autobalancer.common.Utils;
@@ -69,7 +70,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LoadRetriever extends AbstractResumableService implements BrokerStatusListener {
-    public static final Random RANDOM = new Random();
+    public static final Random RANDOM = new SecureRandom();
     private final Map<Integer, BrokerEndpoints> bootstrapServerMap;
     private volatile int metricReporterTopicPartition;
     private final long metricReporterTopicRetentionTime;

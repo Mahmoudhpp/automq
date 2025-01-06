@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.clients.consumer.internals;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.ClientResponse;
 import org.apache.kafka.clients.Metadata;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -719,7 +720,7 @@ public class HeartbeatRequestManagerTest {
         assertEquals(2.0, getMetric("heartbeat-total").metricValue());
 
         // Randomly sleep for some time
-        Random rand = new Random();
+        Random rand = new SecureRandom();
         int randomSleepS = rand.nextInt(11);
         time.sleep(randomSleepS * 1000);
         assertEquals((double) randomSleepS, getMetric("last-heartbeat-seconds-ago").metricValue());

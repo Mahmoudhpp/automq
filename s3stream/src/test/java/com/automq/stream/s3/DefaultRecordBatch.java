@@ -13,6 +13,7 @@ package com.automq.stream.s3;
 
 import com.automq.stream.api.RecordBatch;
 import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Random;
@@ -25,7 +26,7 @@ public class DefaultRecordBatch implements RecordBatch {
         DefaultRecordBatch record = new DefaultRecordBatch();
         record.count = count;
         byte[] bytes = new byte[size];
-        new Random().nextBytes(bytes);
+        new SecureRandom().nextBytes(bytes);
         record.payload = ByteBuffer.wrap(bytes);
         return record;
     }

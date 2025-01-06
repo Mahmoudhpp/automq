@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.clients;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.Cluster;
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.Node;
@@ -278,7 +279,7 @@ public class NetworkClient implements KafkaClient {
         this.socketSendBuffer = socketSendBuffer;
         this.socketReceiveBuffer = socketReceiveBuffer;
         this.correlation = 0;
-        this.randOffset = new Random();
+        this.randOffset = new SecureRandom();
         this.defaultRequestTimeoutMs = defaultRequestTimeoutMs;
         this.reconnectBackoffMs = reconnectBackoffMs;
         this.time = time;

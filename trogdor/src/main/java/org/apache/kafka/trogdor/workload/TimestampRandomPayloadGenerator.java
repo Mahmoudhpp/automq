@@ -19,6 +19,7 @@ package org.apache.kafka.trogdor.workload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.security.SecureRandom;
 import org.apache.kafka.common.utils.Time;
 
 import java.nio.ByteOrder;
@@ -56,7 +57,7 @@ public class TimestampRandomPayloadGenerator implements PayloadGenerator {
     private final byte[] randomBytes;
     private final ByteBuffer buffer;
 
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
 
     @JsonCreator
     public TimestampRandomPayloadGenerator(@JsonProperty("size") int size,

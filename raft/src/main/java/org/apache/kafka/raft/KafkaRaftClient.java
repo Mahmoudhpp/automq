@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.raft;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.Node;
 import org.apache.kafka.common.TopicPartition;
@@ -224,7 +225,7 @@ final public class KafkaRaftClient<T> implements RaftClient<T> {
             MAX_FETCH_WAIT_MS,
             clusterId,
             logContext,
-            new Random(),
+            new SecureRandom(),
             quorumConfig
         );
     }

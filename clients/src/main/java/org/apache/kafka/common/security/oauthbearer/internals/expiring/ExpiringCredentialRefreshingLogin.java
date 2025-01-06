@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.security.oauthbearer.internals.expiring;
 
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
@@ -131,7 +132,7 @@ public abstract class ExpiringCredentialRefreshingLogin implements AutoCloseable
 
     private static final Logger log = LoggerFactory.getLogger(ExpiringCredentialRefreshingLogin.class);
     private static final long DELAY_SECONDS_BEFORE_NEXT_RETRY_WHEN_RELOGIN_FAILS = 10L;
-    private static final Random RNG = new Random();
+    private static final Random RNG = new SecureRandom();
     private final Time time;
     private Thread refresherThread;
 

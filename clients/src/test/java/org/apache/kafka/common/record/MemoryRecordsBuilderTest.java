@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.record;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.compress.Compression;
 import org.apache.kafka.common.errors.UnsupportedCompressionTypeException;
 import org.apache.kafka.common.message.LeaderChangeMessage;
@@ -739,7 +740,7 @@ public class MemoryRecordsBuilderTest {
         ByteBuffer buffer = ByteBuffer.allocate(payloadLen * 2);
         byte[] key = new byte[0];
         byte[] value = new byte[payloadLen];
-        new Random().nextBytes(value); // Use random payload so that compressed buffer is large
+        new SecureRandom().nextBytes(value); // Use random payload so that compressed buffer is large
         List<MemoryRecordsBuilder> builders = new ArrayList<>(100);
         long startMem = 0;
         long memUsed = 0;

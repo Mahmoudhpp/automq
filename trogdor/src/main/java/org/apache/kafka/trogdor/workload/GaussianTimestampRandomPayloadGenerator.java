@@ -19,6 +19,7 @@ package org.apache.kafka.trogdor.workload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.security.SecureRandom;
 import org.apache.kafka.common.utils.Time;
 
 import java.nio.ByteBuffer;
@@ -62,7 +63,7 @@ public class GaussianTimestampRandomPayloadGenerator implements PayloadGenerator
     private final int messagesUntilSizeChange;
     private final long seed;
 
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
     private final ByteBuffer buffer;
 
     private int messageTracker = 0;

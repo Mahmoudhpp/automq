@@ -19,6 +19,7 @@ package org.apache.kafka.trogdor.workload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.security.SecureRandom;
 
 import java.util.Random;
 
@@ -36,7 +37,7 @@ public class UniformRandomPayloadGenerator implements PayloadGenerator {
     private final int size;
     private final long seed;
     private final int padding;
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
     private final byte[] padBytes;
     private final byte[] randomBytes;
 

@@ -30,6 +30,7 @@ import io.opentelemetry.sdk.metrics.data.MetricData;
 import io.opentelemetry.sdk.metrics.export.MetricExporter;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -59,7 +60,7 @@ public class S3MetricsExporter implements MetricExporter {
     private final Map<String, String> defaultTagMap = new HashMap<>();
 
     private final ByteBuf uploadBuffer = Unpooled.directBuffer(DEFAULT_BUFFER_SIZE);
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
     private volatile long lastUploadTimestamp = System.currentTimeMillis();
     private volatile long nextUploadInterval = UPLOAD_INTERVAL + random.nextInt(MAX_JITTER_INTERVAL);
 

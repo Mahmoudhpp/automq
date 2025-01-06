@@ -21,6 +21,7 @@ import com.automq.stream.utils.Time;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.CompositeByteBuf;
 import io.netty.buffer.Unpooled;
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
@@ -61,7 +62,7 @@ public class RecordAccumulatorTest {
         recordAccumulator = new RecordAccumulator(Time.SYSTEM, objectStorage, config);
         recordAccumulator.start();
         generatedByteBufMap = new ConcurrentSkipListMap<>();
-        random = new Random();
+        random = new SecureRandom();
     }
 
     @AfterEach

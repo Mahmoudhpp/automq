@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.tests;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -313,7 +314,7 @@ public class RelationalSmokeTest extends SmokeTestUtil {
             // Explicitly create a seed so we can we can log.
             // If we are debugging a failed run, we can deterministically produce the same dataset
             // by plugging in the seed from that run.
-            final long seed = new Random().nextLong();
+            final long seed = new SecureRandom().nextLong();
             final Random random = new Random(seed);
             LOG.info("Dataset PRNG seed: {}", seed);
             final Iterator<Integer> articlesToCommentOnSequence = zipfNormal(random, numArticles);

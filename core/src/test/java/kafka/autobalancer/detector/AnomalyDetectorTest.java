@@ -18,6 +18,7 @@
 package kafka.autobalancer.detector;
 
 import com.automq.stream.s3.metrics.TimerUtil;
+import java.security.SecureRandom;
 import kafka.autobalancer.common.Action;
 import kafka.autobalancer.common.ActionType;
 import kafka.autobalancer.common.types.Resource;
@@ -250,7 +251,7 @@ public class AnomalyDetectorTest {
         int topicNum = 5000;
         int totalPartitionNum = 100000;
         int partitionNumPerTopic = totalPartitionNum / topicNum;
-        Random r = new Random();
+        Random r = new SecureRandom();
         int[] partitionNums = generatePartitionDist(totalPartitionNum, brokerNum);
         Assertions.assertEquals(totalPartitionNum, Arrays.stream(partitionNums).sum());
         int currPartitionNum = 0;

@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.processor.internals.assignment;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -475,7 +476,7 @@ public class TaskAssignorConvergenceTest {
         // do as many tests as we can in 10 seconds
         final long deadline = System.currentTimeMillis() + 10_000L;
         do {
-            final long seed = new Random().nextLong();
+            final long seed = new SecureRandom().nextLong();
             runRandomizedScenario(seed);
         } while (System.currentTimeMillis() < deadline);
     }

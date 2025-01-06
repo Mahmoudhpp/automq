@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.clients.consumer.internals;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.consumer.ConsumerPartitionAssignor.Subscription;
 import org.apache.kafka.clients.consumer.RangeAssignor;
 import org.apache.kafka.clients.consumer.internals.AbstractPartitionAssignor.MemberInfo;
@@ -87,7 +88,7 @@ public class AbstractPartitionAssignorTest {
 
     @Test
     public void testMergeSortManyMemberInfo() {
-        Random rand = new Random();
+        Random rand = new SecureRandom();
         int bound = 2;
         List<MemberInfo> memberInfoList = new ArrayList<>();
         List<MemberInfo> staticMemberList = new ArrayList<>();

@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.kstream.internals;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.KeyValueTimestamp;
@@ -500,7 +501,7 @@ public class KTableKTableLeftJoinTest {
             };
 
             TestInputTopic<Long, String> inputTopic;
-            final Random random = new Random();
+            final Random random = new SecureRandom();
             for (int i = 0; i < 1000; i++) {
                 for (final String input : inputs) {
                     final Long key = (long) random.nextInt(1000);

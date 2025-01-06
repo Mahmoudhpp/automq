@@ -19,6 +19,7 @@ package org.apache.kafka.trogdor.workload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.security.SecureRandom;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.common.errors.InterruptException;
 import java.util.Random;
@@ -54,7 +55,7 @@ public class GaussianFlushGenerator implements FlushGenerator {
     private final int messagesPerFlushAverage;
     private final double messagesPerFlushDeviation;
 
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
 
     private int messageTracker = 0;
     private int flushSize = 0;

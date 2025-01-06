@@ -11,6 +11,7 @@
 
 package org.apache.kafka.common;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +23,7 @@ public class WeightedRandomList<T> {
     private final Random r;
 
     public WeightedRandomList() {
-        this(new Random());
+        this(new SecureRandom());
     }
 
     public WeightedRandomList(Random r) {

@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.coordinator.group.runtime;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
@@ -94,7 +95,7 @@ public class EventAccumulator<K, T extends EventAccumulator.Event<K>> implements
     private boolean closed;
 
     public EventAccumulator() {
-        this(new Random());
+        this(new SecureRandom());
     }
 
     public EventAccumulator(

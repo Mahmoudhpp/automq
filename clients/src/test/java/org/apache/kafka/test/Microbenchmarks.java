@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.test;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ public class Microbenchmarks {
 
         // test random
         int n = 0;
-        Random random = new Random();
+        Random random = new SecureRandom();
         start = System.nanoTime();
         for (int i = 0; i < iters; i++) {
             n += random.nextInt();

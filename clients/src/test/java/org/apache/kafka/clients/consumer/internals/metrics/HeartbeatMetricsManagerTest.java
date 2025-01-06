@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.clients.consumer.internals.metrics;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.metrics.Metrics;
 import org.apache.kafka.common.utils.MockTime;
 import org.apache.kafka.common.utils.Time;
@@ -54,7 +55,7 @@ public class HeartbeatMetricsManagerTest {
         assertEquals(3d, metrics.metric(heartbeatMetricsManager.heartbeatTotal).metricValue());
 
         // Randomly sleep 1-10 seconds
-        Random rand = new Random();
+        Random rand = new SecureRandom();
         int randomSleepS = rand.nextInt(10) + 1;
         time.sleep(TimeUnit.SECONDS.toMillis(randomSleepS));
         assertEquals((double) randomSleepS, metrics.metric(heartbeatMetricsManager.lastHeartbeatSecondsAgo).metricValue());

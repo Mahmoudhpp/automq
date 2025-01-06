@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.kstream.internals;
 
+import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.kafka.common.MetricName;
@@ -1582,7 +1583,7 @@ public class KStreamSlidingWindowAggregateTest {
             );
         final MockApiProcessorSupplier<Windowed<String>, String, Void, Void> supplier = new MockApiProcessorSupplier<>();
         table.toStream().process(supplier);
-        final long seed = new Random().nextLong();
+        final long seed = new SecureRandom().nextLong();
         final Random shuffle = new Random(seed);
 
         try {

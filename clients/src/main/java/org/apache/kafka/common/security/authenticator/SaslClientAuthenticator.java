@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.security.authenticator;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.NetworkClient;
 import org.apache.kafka.common.KafkaException;
@@ -105,7 +106,7 @@ public class SaslClientAuthenticator implements Authenticator {
     }
 
     private static final short DISABLE_KAFKA_SASL_AUTHENTICATE_HEADER = -1;
-    private static final Random RNG = new Random();
+    private static final Random RNG = new SecureRandom();
 
     /**
      * the reserved range of correlation id for Sasl requests.

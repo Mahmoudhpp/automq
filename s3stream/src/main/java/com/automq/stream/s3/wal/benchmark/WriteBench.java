@@ -20,6 +20,7 @@ import com.automq.stream.utils.Threads;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.NavigableSet;
 import java.util.Random;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -48,7 +49,7 @@ public class WriteBench implements AutoCloseable {
     private final TrimOffset trimOffset = new TrimOffset();
 
     // Generate random payloads for this benchmark tool
-    private Random random = new Random();
+    private Random random = new SecureRandom();
 
     public WriteBench(Config config) throws IOException {
         BlockWALService.BlockWALServiceBuilder builder = BlockWALService.builder(config.path, config.capacity);

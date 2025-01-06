@@ -11,6 +11,7 @@
 
 package org.apache.kafka.controller.es;
 
+import java.security.SecureRandom;
 import java.util.stream.Collectors;
 import java.util.Random;
 import org.apache.kafka.common.TopicPartition;
@@ -32,7 +33,7 @@ public class LoadAwarePartitionLeaderSelector implements PartitionLeaderSelector
     private final RandomPartitionLeaderSelector randomSelector;
 
     public LoadAwarePartitionLeaderSelector(List<BrokerRegistration> aliveBrokers, BrokerRegistration brokerToRemove) {
-        this(new Random(), aliveBrokers, brokerToRemove);
+        this(new SecureRandom(), aliveBrokers, brokerToRemove);
     }
 
     public LoadAwarePartitionLeaderSelector(Random r, List<BrokerRegistration> aliveBrokers, BrokerRegistration brokerToRemove) {

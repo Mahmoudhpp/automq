@@ -19,6 +19,7 @@ import com.automq.stream.s3.metadata.S3ObjectType;
 import com.automq.stream.s3.model.StreamRecordBatch;
 import com.automq.stream.s3.operator.MemoryObjectStorage;
 import com.automq.stream.s3.operator.ObjectStorage;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +78,7 @@ public class ObjectReaderLRUCacheTest {
     public void testConcurrentGetPut() throws InterruptedException {
         ObjectReaderLRUCache cache = new ObjectReaderLRUCache("", 5000);
         List<CompletableFuture<Integer>> cfs = new ArrayList<>();
-        Random r = new Random();
+        Random r = new SecureRandom();
         for (int i = 0; i < 100; i++) {
             ObjectReader reader = Mockito.mock(ObjectReader.class);
             CompletableFuture<Integer> cf = CompletableFuture.supplyAsync(() -> 100,

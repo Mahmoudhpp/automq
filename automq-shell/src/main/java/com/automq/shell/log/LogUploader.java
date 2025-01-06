@@ -20,6 +20,7 @@ import com.google.common.collect.Lists;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -51,7 +52,7 @@ public class LogUploader implements LogRecorder {
 
     private final BlockingQueue<LogEvent> queue = new LinkedBlockingQueue<>(DEFAULT_MAX_QUEUE_SIZE);
     private final ByteBuf uploadBuffer = Unpooled.directBuffer(DEFAULT_BUFFER_SIZE);
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
     private volatile long lastUploadTimestamp = System.currentTimeMillis();
     private volatile long nextUploadInterval = UPLOAD_INTERVAL + random.nextInt(MAX_JITTER_INTERVAL);
 

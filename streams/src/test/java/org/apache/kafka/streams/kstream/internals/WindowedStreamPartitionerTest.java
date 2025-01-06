@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.kstream.internals;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.Cluster;
 import org.apache.kafka.common.Node;
 import org.apache.kafka.common.PartitionInfo;
@@ -53,7 +54,7 @@ public class WindowedStreamPartitionerTest {
 
     @Test
     public void testCopartitioning() {
-        final Random rand = new Random();
+        final Random rand = new SecureRandom();
         @SuppressWarnings("deprecation")
         final org.apache.kafka.clients.producer.internals.DefaultPartitioner defaultPartitioner = new org.apache.kafka.clients.producer.internals.DefaultPartitioner();
         final WindowedSerializer<Integer> timeWindowedSerializer = new TimeWindowedSerializer<>(intSerializer);

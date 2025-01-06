@@ -17,6 +17,7 @@
 
 package org.apache.kafka.common.security.oauthbearer.internals.secured;
 
+import java.security.SecureRandom;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -121,7 +122,7 @@ public class HttpAccessTokenRetrieverTest extends OAuthBearerTest {
     @Test
     public void testCopy() throws IOException {
         byte[] expected = new byte[4096 + 1];
-        Random r = new Random();
+        Random r = new SecureRandom();
         r.nextBytes(expected);
         InputStream in = new ByteArrayInputStream(expected);
         ByteArrayOutputStream out = new ByteArrayOutputStream();

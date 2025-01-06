@@ -17,6 +17,7 @@
 
 package org.apache.kafka.controller;
 
+import java.security.SecureRandom;
 import java.util.stream.Collectors;
 import org.apache.kafka.clients.admin.AlterConfigOp.OpType;
 import org.apache.kafka.clients.admin.FeatureUpdate;
@@ -265,7 +266,7 @@ public final class QuorumController implements Controller {
         private short defaultReplicationFactor = 3;
         private int defaultNumPartitions = 1;
         private int defaultMinIsr = 1;
-        private ReplicaPlacer replicaPlacer = new StripedReplicaPlacer(new Random());
+        private ReplicaPlacer replicaPlacer = new StripedReplicaPlacer(new SecureRandom());
         private OptionalLong leaderImbalanceCheckIntervalNs = OptionalLong.empty();
         private OptionalLong maxIdleIntervalNs = OptionalLong.empty();
         private long sessionTimeoutNs = ClusterControlManager.DEFAULT_SESSION_TIMEOUT_NS;

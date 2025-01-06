@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.integration;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -105,7 +106,7 @@ public class PositionRestartIntegrationTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(600);
     private static final Logger LOG = LoggerFactory.getLogger(PositionRestartIntegrationTest.class);
-    private static final long SEED = new Random().nextLong();
+    private static final long SEED = new SecureRandom().nextLong();
     private static final int NUM_BROKERS = 1;
     public static final Duration WINDOW_SIZE = Duration.ofMinutes(5);
     private static int port = 0;

@@ -19,6 +19,7 @@ package org.apache.kafka.trogdor.workload;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.security.SecureRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ import java.util.Random;
 public class RandomComponentPayloadGenerator implements PayloadGenerator {
     private final long seed;
     private final List<RandomComponent> components;
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
 
     @JsonCreator
     public RandomComponentPayloadGenerator(@JsonProperty("seed") long seed,

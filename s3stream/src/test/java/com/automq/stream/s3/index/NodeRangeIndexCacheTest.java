@@ -13,6 +13,7 @@ package com.automq.stream.s3.index;
 
 import com.automq.stream.utils.MockTime;
 import com.google.common.base.Ticker;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -94,7 +95,7 @@ public class NodeRangeIndexCacheTest {
 
     @Test
     public void testLRUCache() throws InterruptedException {
-        Random r = new Random();
+        Random r = new SecureRandom();
         List<CompletableFuture<Long>> cfs = new CopyOnWriteArrayList<>();
         for (int i = 0; i < 1000; i++) {
             int finalI = i;

@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.security.authenticator;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.NetworkClient;
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.config.SaslConfigs;
@@ -229,7 +230,7 @@ public class SaslAuthenticatorTest {
 
         // test with handshake request with large mechanism string
         byte[] bytes = new byte[1024];
-        new Random().nextBytes(bytes);
+        new SecureRandom().nextBytes(bytes);
         String mechanism = new String(bytes, StandardCharsets.UTF_8);
         String node2 = "invalid1";
         createClientConnection(SecurityProtocol.PLAINTEXT, node2);
@@ -912,7 +913,7 @@ public class SaslAuthenticatorTest {
         String node1 = "invalid1";
         createClientConnection(SecurityProtocol.PLAINTEXT, node1);
         sendHandshakeRequestReceiveResponse(node1, (short) 1);
-        Random random = new Random();
+        Random random = new SecureRandom();
         byte[] bytes = new byte[1024];
         random.nextBytes(bytes);
         selector.send(new NetworkSend(node1, ByteBufferSend.sizePrefixed(ByteBuffer.wrap(bytes))));

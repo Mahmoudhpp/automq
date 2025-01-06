@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.tests;
 
+import java.security.SecureRandom;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -126,7 +127,7 @@ public class SmokeTestDriver extends SmokeTestUtil {
             data[i] = new ValueList(i, i + maxRecordsPerKey - 1);
         }
 
-        final Random rand = new Random();
+        final Random rand = new SecureRandom();
 
         try (final KafkaProducer<byte[], byte[]> producer = new KafkaProducer<>(producerProps)) {
             while (true) {
@@ -173,7 +174,7 @@ public class SmokeTestDriver extends SmokeTestUtil {
             data[i] = new ValueList(i, i + maxRecordsPerKey - 1);
             allData.put(data[i].key, new HashSet<>());
         }
-        final Random rand = new Random();
+        final Random rand = new SecureRandom();
 
         int remaining = data.length;
 
@@ -309,7 +310,7 @@ public class SmokeTestDriver extends SmokeTestUtil {
     }
 
     private static void shuffle(final int[] data, @SuppressWarnings("SameParameterValue") final int windowSize) {
-        final Random rand = new Random();
+        final Random rand = new SecureRandom();
         for (int i = 0; i < data.length; i++) {
             // we shuffle data within windowSize
             final int j = rand.nextInt(Math.min(data.length - i, windowSize)) + i;

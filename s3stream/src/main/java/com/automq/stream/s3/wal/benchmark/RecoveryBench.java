@@ -19,6 +19,7 @@ import com.automq.stream.s3.wal.WriteAheadLog;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -36,7 +37,7 @@ import static com.automq.stream.s3.wal.benchmark.BenchTool.resetWALHeader;
 public class RecoveryBench implements AutoCloseable {
 
     private final WriteAheadLog log;
-    private Random random = new Random();
+    private Random random = new SecureRandom();
 
     public RecoveryBench(Config config) throws IOException {
         this.log = BlockWALService.builder(config.path, config.capacity).build().start();

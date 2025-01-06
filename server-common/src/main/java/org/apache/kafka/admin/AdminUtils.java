@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.admin;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.errors.InvalidPartitionsException;
 import org.apache.kafka.common.errors.InvalidReplicationFactorException;
 import org.apache.kafka.server.common.AdminOperationException;
@@ -33,7 +34,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AdminUtils {
-    static final Random RAND = new Random();
+    static final Random RAND = new SecureRandom();
 
     public static final String ADMIN_CLIENT_ID = "__admin_client";
 

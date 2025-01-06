@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.tools;
 
+import java.security.SecureRandom;
 import joptsimple.OptionException;
 import joptsimple.OptionSpec;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -49,7 +50,7 @@ import static joptsimple.util.RegexMatcher.regex;
 
 public class ConsumerPerformance {
     private static final Logger LOG = LoggerFactory.getLogger(ConsumerPerformance.class);
-    private static final Random RND = new Random();
+    private static final Random RND = new SecureRandom();
 
     public static void main(String[] args) {
         try {

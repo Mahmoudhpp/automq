@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.common.metrics.stats;
 
+import java.security.SecureRandom;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -147,7 +148,7 @@ public class HistogramTest {
     }
 
     public static void main(String[] args) {
-        Random random = new Random();
+        Random random = new SecureRandom();
         System.out.println("[-100, 100]:");
         for (BinScheme scheme : Arrays.asList(new ConstantBinScheme(1000, -100, 100),
                                               new ConstantBinScheme(100, -100, 100),

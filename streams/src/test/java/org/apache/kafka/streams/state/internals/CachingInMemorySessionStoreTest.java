@@ -16,6 +16,7 @@
  */
 package org.apache.kafka.streams.state.internals;
 
+import java.security.SecureRandom;
 import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.apache.kafka.common.metrics.Metrics;
 import org.apache.kafka.common.serialization.Deserializer;
@@ -832,7 +833,7 @@ public class CachingInMemorySessionStoreTest {
     }
 
     private List<KeyValue<Windowed<Bytes>, byte[]>> addSessionsUntilOverflow(final String... sessionIds) {
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         final List<KeyValue<Windowed<Bytes>, byte[]>> results = new ArrayList<>();
         while (cache.size() == results.size()) {
             final String sessionId = sessionIds[random.nextInt(sessionIds.length)];
