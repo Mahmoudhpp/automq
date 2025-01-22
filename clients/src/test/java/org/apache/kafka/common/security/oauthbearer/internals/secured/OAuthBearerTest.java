@@ -17,6 +17,7 @@
 
 package org.apache.kafka.common.security.oauthbearer.internals.secured;
 
+import java.nio.file.Files;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -163,7 +164,7 @@ public abstract class OAuthBearerTest {
         String suffix,
         String contents)
         throws IOException {
-        File file = File.createTempFile(prefix, suffix, tmpDir);
+        File file = Files.createTempFile(tmpDir.toPath(), prefix, suffix).toFile();
         log.debug("Created new temp file {}", file);
         file.deleteOnExit();
 
